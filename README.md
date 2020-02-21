@@ -16,6 +16,13 @@ cd project-generator
 make install
 ```
 
+### Setup your own environment
+- edit the environment in template folder for each language, free to custom
+- install the tools again
+```
+make folder-copy
+```
+
 ### Usage
 - to initialize Ruby project folder
 ```
