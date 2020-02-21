@@ -1,0 +1,86 @@
+#!/bin/bash
+
+check_argument() {
+    if [ -z $1 ]
+    then
+        echo "FODLER_NAME argument not found, use -h for help."
+        exit
+    fi
+
+    if [ $1 == '-h' ]
+    then
+        helper
+        exit
+    fi
+}
+
+helper() {
+    echo "A program to generate ruby folder.
+
+    USAGE:
+        (basename "$0") [-h] FOLDER_NAME
+
+    EXAMPLE:
+        ruby-gen battleship
+
+    OPTIONS:
+        -h  show this help text"
+}
+
+check_requirement() {
+    is_ruby_exist
+    is_bundle_exist
+}
+
+is_ruby_exist() {
+    ruby -v &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "Ruby not installed"
+        exit_script
+    fi
+}
+
+is_bundle_exist() {
+    bundle -v &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "Bundle not installed"
+        exit_script
+    fi
+}
+
+exit_script() {
+    exit 1
+}
+
+generator() {
+    clone_template $1
+}
+
+clone_template() {
+    check_template_folder_exist
+
+    cp -pr /usr/local/share/project-generator/template/ruby-template $1
+    exec_bundle $1
+}
+
+check_template_folder_exist() {
+    if [ ! -d "/usr/local/share/project-generator/template/ruby-template" ]
+    then
+        echo "directory template is missing. Install first"
+        exit
+    fi
+}
+
+exec_bundle() {
+    cd $1 && bundle install
+}
+
+main() {
+    check_argument $1
+    check_requirement
+    generator $1
+}
+
+main $1
