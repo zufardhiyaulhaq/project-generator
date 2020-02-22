@@ -15,3 +15,7 @@ task :default do
   Rake::Task['tester'].invoke
   Rake::Task['linter'].invoke
 end
+
+task :coverage do
+  `open coverage/index.html`
+end

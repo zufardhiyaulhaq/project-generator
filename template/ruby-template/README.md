@@ -16,6 +16,11 @@ using rspec & rubocop
 rake
 ```
 
+to open the coverage result in browser
+```
+rake coverage
+```
+
 ## Run Instruction
 run instruction for this project
 
