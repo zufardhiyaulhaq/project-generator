@@ -1,5 +1,4 @@
 #!/bin/bash
-#!/bin/bash
 
 check_argument() {
     if [ -z $1 ]
@@ -30,7 +29,6 @@ helper() {
 
 check_requirement() {
     is_java_exist
-    is_bundle_exist
 }
 
 is_java_exist() {
@@ -38,15 +36,6 @@ is_java_exist() {
     if [ $? -ne 0 ]
     then
         echo "java not installed"
-        exit_script
-    fi
-}
-
-is_bundle_exist() {
-    gradle -v &>/dev/null
-    if [ $? -ne 0 ]
-    then
-        echo "Bundle not installed"
         exit_script
     fi
 }
