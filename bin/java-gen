@@ -1,1 +1,92 @@
 #!/bin/bash
+#!/bin/bash
+
+check_argument() {
+    if [ -z $1 ]
+    then
+        echo "FOLDER_NAME argument not found, use -h for help."
+        exit
+    fi
+
+    if [ $1 == '-h' ]
+    then
+        helper
+        exit
+    fi
+}
+
+helper() {
+    echo "A program to generate java folder.
+
+    USAGE:
+        (basename "$0") [-h] FOLDER_NAME
+
+    EXAMPLE:
+        java-gen battleship
+
+    OPTIONS:
+        -h  show this help text"
+}
+
+check_requirement() {
+    is_java_exist
+    is_bundle_exist
+}
+
+is_java_exist() {
+    java -version &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "java not installed"
+        exit_script
+    fi
+}
+
+is_bundle_exist() {
+    gradle -v &>/dev/null
+    if [ $? -ne 0 ]
+    then
+        echo "Bundle not installed"
+        exit_script
+    fi
+}
+
+exit_script() {
+    exit 1
+}
+
+generator() {
+    clone_template $1
+}
+
+clone_template() {
+    check_template_folder_exist
+
+    cp -pr /usr/local/share/project-generator/template/java-template $1
+    exec_init $1
+}
+
+check_template_folder_exist() {
+    if [ ! -d "/usr/local/share/project-generator/template/java-template" ]
+    then
+        echo "directory template is missing. Install first"
+        exit
+    fi
+}
+
+exec_init() {
+    cd $1
+    echo $1
+    sed -i.bak "s/java-template/$1/g" settings.gradle
+    mv gitignore.template gitignore
+    ./gradlew build
+    rm -rf settings.gradle.bak
+}
+
+main() {
+    check_argument $1
+    check_requirement
+    generator $1
+}
+
+main $1
