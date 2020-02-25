@@ -1,28 +1,26 @@
-# disable enforcing comment before class
-Style/Documentation:
+Documentation:
   Enabled: false
-
-# disable enforcing frozen string in top of class
-Style/FrozenStringLiteralComment:
+Metrics/LineLength:
+  Max: 100
+Metrics/BlockLength:
   Enabled: false
-
-# max line length is 150
-Layout/LineLength:
-  Max: 150
-
-# max method length is 30
 Metrics/MethodLength:
-  Enabled: true
-  Max: 30
-
-# disable class length
+  Enabled: false
 Metrics/ClassLength:
   Enabled: false
-
-# disable enforcing using single line style
+Metrics/BlockNesting:
+  Enabled: false
+Metrics/AbcSize:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Metrics/PerceivedComplexity:
+  Enabled: false
+Style/For:
+  Enabled: false
 Style/IfUnlessModifier:
   Enabled: false
-
-# change access modifier from around to only_before
+Style/ConditionalAssignment:
+  Enabled: false
 Layout/EmptyLinesAroundAccessModifier:
   EnforcedStyle: only_before

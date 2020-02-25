@@ -11,6 +11,10 @@ RuboCop::RakeTask.new(:linter) do |test|
   test.options = ['--display-cop-names']
 end
 
+RuboCop::RakeTask.new(:linterformat) do |test|
+  test.options = ['-a']
+end
+
 task :default do
   Rake::Task['tester'].invoke
   Rake::Task['linter'].invoke
