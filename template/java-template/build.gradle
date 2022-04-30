@@ -1,11 +1,31 @@
 plugins {
     id 'java'
+    id 'jacoco'
+    id 'com.github.ksoichiro.console.reporter' version '0.6.2'
 }
-
+jacoco {
+    toolVersion = "0.8.2"
+}
 repositories {
     jcenter()
 }
-
 dependencies {
     testImplementation 'junit:junit:4.12'
+}
+test {
+    dependsOn 'cleanTest'
+    testLogging {
+        events("passed", "skipped", "failed")
+    }
+}
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled true
+        csv.enabled true
+    }
+}
+check {
+    dependsOn 'jacocoTestReport'
+    dependsOn 'jacocoTestCoverageVerification'
 }

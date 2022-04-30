@@ -1,14 +1,12 @@
-Documentation:
+Style/Documentation:
   Enabled: false
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
 Metrics/BlockLength:
   Enabled: false
 Metrics/MethodLength:
   Enabled: false
 Metrics/ClassLength:
-  Enabled: false
-Metrics/BlockNesting:
   Enabled: false
 Metrics/AbcSize:
   Enabled: false
@@ -21,6 +19,8 @@ Style/For:
 Style/IfUnlessModifier:
   Enabled: false
 Style/ConditionalAssignment:
-  Enabled: false
+  EnforcedStyle: assign_inside_condition
 Layout/EmptyLinesAroundAccessModifier:
   EnforcedStyle: only_before
+Naming/MethodParameterName:
+  Enabled: false

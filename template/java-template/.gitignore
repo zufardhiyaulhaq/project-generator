@@ -1,7 +1,6 @@
 *.iws
 *.iml
 *.ipr
-.editorconfig
 .idea/
 .gradle/
 .idea_modules/

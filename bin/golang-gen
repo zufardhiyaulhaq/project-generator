@@ -15,27 +15,27 @@ check_argument() {
 }
 
 helper() {
-    echo "A program to generate java folder.
+    echo "A program to generate golang folder.
 
     USAGE:
-        (basename "$0") [-h] FOLDER_NAME
+        (basename "$0") FOLDER_NAME MODULE_PATH
 
     EXAMPLE:
-        java-gen battleship
+        golang-gen battleship
 
     OPTIONS:
         -h  show this help text"
 }
 
 check_requirement() {
-    is_java_exist
+    is_golang_exist
 }
 
-is_java_exist() {
-    java -version &>/dev/null
+is_golang_exist() {
+    go version &>/dev/null
     if [ $? -ne 0 ]
     then
-        echo "java not installed"
+        echo "golang not installed"
         exit_script
     fi
 }
@@ -45,18 +45,18 @@ exit_script() {
 }
 
 generator() {
-    clone_template $1
+    clone_template $1 $2
 }
 
 clone_template() {
     check_template_folder_exist
 
-    cp -pr /usr/local/share/project-generator/template/java-template $1
-    exec_init $1
+    cp -pr /usr/local/share/project-generator/template/golang-template $1
+    exec_init $1 $2
 }
 
 check_template_folder_exist() {
-    if [ ! -d "/usr/local/share/project-generator/template/java-template" ]
+    if [ ! -d "/usr/local/share/project-generator/template/golang-template" ]
     then
         echo "directory template is missing. Install first"
         exit
@@ -67,15 +67,15 @@ exec_init() {
     cd $1
     git init .
     
-    sed -i.bak "s/java-template/$1/g" settings.gradle
-    ./gradlew build
-    rm -rf settings.gradle.bak
+    sed -i.bak "s/PROJECT-NAME/$1/g" Makefile
+    rm -rf Makefile.bak
+    go mod init $2
 }
 
 main() {
     check_argument $1
     check_requirement
-    generator $1
+    generator $1 $2
 }
 
-main $1
+main $1 $2

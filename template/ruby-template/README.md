@@ -1,26 +1,28 @@
 ## Description
-description about program for this project
+Description about program for this project
 
 ## Environment Setup
 - Ruby 2.6.5
-- Bundler 1.17.2
+- Bundler 2.1.4
 
-install all depedency using bundle in root of directory project.
-```
+Install all dependency using bundle in root of directory project.
+```bash
 bundle install
 ```
 
 ## Run Test
 using rspec & rubocop
-```
-rake
+```bash
+bundle exec rake
 ```
 
 to open the coverage result in browser
-```
-rake coverage
+```bash
+bundle exec rake coverage
 ```
 
 ## Run Instruction
 run instruction for this project
 
+## Library Import Instruction
+import instruction for this project

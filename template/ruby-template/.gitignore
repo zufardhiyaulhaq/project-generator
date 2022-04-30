@@ -1,4 +1,6 @@
 .DS_Store
 *.gem
 *.rbc
+*.iml
+.idea
 coverage/

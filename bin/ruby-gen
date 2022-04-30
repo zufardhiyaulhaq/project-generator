@@ -75,6 +75,7 @@ check_template_folder_exist() {
 
 exec_bundle() {
     cd $1 && bundle install
+    git init .
 }
 
 main() {

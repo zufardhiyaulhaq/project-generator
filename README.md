@@ -5,6 +5,7 @@ Project Generator is a automation tools to setup boilerplate of language project
 Supported Language:
 - Ruby
 - Java
+- Golang
 
 ### Installation
 ``` 
@@ -24,17 +25,16 @@ make install
 ### Usage
 - to initialize Ruby project folder
 ```
-ruby-gen FOLDER-NAME
+ruby-gen PROJECT-NAME
 ```
 
-example:
+- to intialize Java project folder
 ```
-Documents $ pwd
-/Users/zufar.dhiyaulhaq/Documents
-Documents $ ls
-Archive   Btech     Community Github    Gojek
-Documents $ ruby-gen battlefield
+java-gen PROJECT-NAME
 ```
 
-
+- to intialize Golang project folder
+```
+golang-gen PROJECT-NAME MODULE-PATH
+```
 
